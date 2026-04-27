@@ -8,35 +8,49 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Commerce Emerald — Light */
+    --background: 40 33% 98%;
+    --foreground: 160 25% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 160 25% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 160 25% 10%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 158 64% 32%;
+    --primary-foreground: 150 50% 98%;
+    --primary-glow: 152 76% 44%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 150 25% 94%;
+    --secondary-foreground: 158 50% 18%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 150 20% 95%;
+    --muted-foreground: 160 12% 42%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 152 60% 92%;
+    --accent-foreground: 158 64% 22%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --warning: 35 92% 50%;
+    --warning-foreground: 30 50% 12%;
 
-    --radius: 0.5rem;
+    --success: 152 70% 38%;
+    --success-foreground: 150 50% 98%;
+
+    --border: 150 18% 88%;
+    --input: 150 18% 88%;
+    --ring: 158 64% 32%;
+
+    --radius: 0.75rem;
+
+    --gradient-primary: linear-gradient(135deg, hsl(158 64% 32%), hsl(152 76% 44%));
+    --gradient-subtle: linear-gradient(180deg, hsl(40 33% 98%), hsl(150 25% 96%));
+    --shadow-soft: 0 1px 2px hsl(160 25% 10% / 0.04), 0 4px 12px hsl(160 25% 10% / 0.04);
+    --shadow-card: 0 2px 4px hsl(160 25% 10% / 0.04), 0 8px 24px hsl(160 25% 10% / 0.06);
+    --shadow-elegant: 0 10px 30px -10px hsl(158 64% 32% / 0.25);
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,33 +70,48 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Commerce Emerald — Dark */
+    --background: 160 28% 7%;
+    --foreground: 150 25% 96%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 160 26% 10%;
+    --card-foreground: 150 25% 96%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 160 26% 10%;
+    --popover-foreground: 150 25% 96%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 152 70% 48%;
+    --primary-foreground: 160 30% 8%;
+    --primary-glow: 150 76% 58%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 160 20% 15%;
+    --secondary-foreground: 150 25% 96%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 160 18% 14%;
+    --muted-foreground: 150 12% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 158 40% 18%;
+    --accent-foreground: 150 60% 88%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --warning: 35 92% 55%;
+    --warning-foreground: 30 50% 10%;
+
+    --success: 152 70% 50%;
+    --success-foreground: 160 30% 8%;
+
+    --border: 160 18% 18%;
+    --input: 160 18% 18%;
+    --ring: 152 70% 48%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(152 70% 38%), hsl(150 76% 52%));
+    --gradient-subtle: linear-gradient(180deg, hsl(160 28% 7%), hsl(160 26% 10%));
+    --shadow-soft: 0 1px 2px hsl(0 0% 0% / 0.3), 0 4px 12px hsl(0 0% 0% / 0.25);
+    --shadow-card: 0 2px 4px hsl(0 0% 0% / 0.3), 0 8px 24px hsl(0 0% 0% / 0.35);
+    --shadow-elegant: 0 10px 30px -10px hsl(152 70% 48% / 0.4);
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
