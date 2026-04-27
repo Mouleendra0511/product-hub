@@ -39,8 +39,25 @@ A full-stack product management dashboard built with **React + TypeScript** on t
 
 ---
 
-product-hub/ ├── backend/ # Spring Boot API │ ├── pom.xml # Maven build file (Java 21, Spring Boot 4) │ └── src/main/ │ ├── java/com/telusko/ecom_proj/ │ │ ├── EcomProjApplication.java # Entry point │ │ ├── controller/ProductController.java # REST endpoints │ │ ├── model/Product.java # JPA entity + Lombok │ │ ├── repo/ProductRepo.java # JpaRepository + custom JPQL search │ │ └── service/ProductService.java │ └── resources/ │ ├── application.properties # H2 datasource config │ └── data1.sql # 10 seed products ├── src/ # React frontend │ ├── main.tsx # React entry point │ ├── App.tsx # Router + providers setup │ ├── pages/ │ │ ├── AllProducts.tsx # Product table with filter/sort │ │ ├── AddProduct.tsx # Create form │ │ ├── EditProduct.tsx # Edit form │ │ ├── ProductDetails.tsx # Detail view │ │ ├── Inventory.tsx # Admin stock management │ │ └── NotFound.tsx │ ├── components/ │ │ ├── layout/AppLayout.tsx # Shell: header, search bar, nav tabs │ │ ├── products/ # ProductForm, ProductImage, AvailabilityBadge, DeleteProductDialog │ │ └── ui/ # shadcn/ui component library │ ├── hooks/ │ │ ├── useProducts.ts # React Query wrappers for all CRUD ops │ │ └── useDebounce.ts # Debounce hook for search │ ├── context/SearchContext.tsx # Global search keyword state │ ├── services/api.ts # Typed fetch wrappers for REST API │ ├── types/product.ts # Product and ProductInput TypeScript types │ └── lib/ # date.ts, utils.ts ├── index.html # Vite HTML entry ├── vite.config.ts # Vite config + /api proxy → :8081 ├── tailwind.config.ts # Theme tokens (dark mode, custom colors) ├── tsconfig.json # TypeScript config ├── vitest.config.ts # Vitest test config └── package.json # Frontend deps & scripts
-
+product-hub/
+│
+├── frontend/                    # React App (Vite + TS)
+│   ├── src/
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── tailwind.config.ts
+│   └── tsconfig.json
+│
+├── backend/                    # Spring Boot API
+│   ├── src/main/java/com/telusko/ecom_proj/
+│   ├── src/main/resources/
+│   ├── pom.xml
+│   └── mvnw / mvnw.cmd
+│
+├── README.md                   # Main project overview
+├── .gitignore
+└── docs/ (optional)            # Screenshots / diagrams
 
 ---
 
@@ -59,24 +76,26 @@ product-hub/ ├── backend/ # Spring Boot API │ ├── pom.xml # Maven 
 ```bash
 git clone https://github.com/Mouleendra0511/product-hub.git
 cd product-hub
-
+```
 2. Start the backend
-bash
+
+```bash
 cd backend
 ./mvnw spring-boot:run          # Linux / macOS
 mvnw.cmd spring-boot:run        # Windows
 The API starts on http://localhost:8081 and auto-seeds 10 sample products from data1.sql. The H2 console is accessible at http://localhost:8081/h2-console (JDBC URL: jdbc:h2:mem:fauji).
-
+```
 3. Start the frontend (dev server)
 In the project root:
 
-bash
+```bash
 npm install
 npm run dev
 The dev server starts on http://localhost:8080 and proxies all /api/* requests to http://localhost:8081 (vite.config.ts line 15–18).
-
-📜 npm Scripts (package.json)
+```
+npm Scripts (package.json)
 Script	Description
+```
 npm run dev	Start Vite dev server (port 8080, HMR enabled)
 npm run build	Production build → dist/
 npm run build:dev	Development-mode build
@@ -84,9 +103,10 @@ npm run preview	Preview the production build locally
 npm run lint	Run ESLint
 npm run test	Run Vitest tests once
 npm run test:watch	Run Vitest in watch mode
-🌐 REST API Endpoints
+```
+REST API Endpoints
 All endpoints are prefixed with /api (ProductController.java line 18).
-
+```
 Method	Path	Description
 GET	/api/products	List all products
 GET	/api/product/{id}	Get product by ID
@@ -95,23 +115,24 @@ GET	/api/products/search?keyword=	Search by name/brand/category
 POST	/api/product	Create product (multipart)
 PUT	/api/product/{id}	Update product (multipart)
 DELETE	/api/product/{id}	Delete product
-🧪 Testing
+```
+Testing
 Frontend unit tests use Vitest and @testing-library/react:
 
-bash
+```bash
 npm run test          # run once
 npm run test:watch    # watch mode
 Test setup: src/test/setup.ts. Example test: src/test/example.test.ts.
-
-🤝 Contributing
+```
+Contributing
 Fork the repo and create a feature branch: git checkout -b feature/my-feature
 Make your changes and ensure npm run lint passes
 Run npm run test to confirm tests pass
 Open a pull request against main
-📄 License
+
+License
 No license file is present in the repository. Contact the repository owner for usage terms.
 
-Code
 
 ---
 
@@ -131,12 +152,4 @@ Code
 | Low-stock threshold | Inventory flags items with `quantity < 5` | `src/pages/Inventory.tsx:29` |
 | Debounced search | 300 ms debounce before API call | `src/pages/AllProducts.tsx:52` |
 | Theme | Light/dark via `next-themes`, togglable in header | `src/App.tsx:5`, `src/components/layout/ThemeToggle.tsx` |
-| No `.env` needed | No environment variables required for local dev | `vite.config.ts`, `application.properties` |
-| No license file | `pom.xml` has empty `<license/>` tags; no LICENSE file present | `backend/pom.xml:17–19` |
 
-> **Notable potential bug**: `ProductRepo.java` line 14 references `p.description` in JPQL, but the `Product` entity field is named `desc` (line 10 of `Product.java`). This would cause a startup/query error in practice.
-
-> **Another note**: `ProductController.java` line 60 has a path typo — `@PutMapping("/product{id}")` is missing the `/` separator before `{id}` (should be `/product/{id}`), which means update requests from the frontend (`src/services/api.ts:58`) will get 404s.
-
-
-## 📁 Project Structure
