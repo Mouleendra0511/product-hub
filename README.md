@@ -38,7 +38,7 @@ A full-stack product management dashboard built with **React + TypeScript** on t
 | Testing     | Vitest + Testing Library (frontend)                  |
 
 ---
-
+```
 product-hub/
 │
 ├── frontend/                    # React App (Vite + TS)
@@ -58,7 +58,7 @@ product-hub/
 ├── README.md                   # Main project overview
 ├── .gitignore
 └── docs/ (optional)            # Screenshots / diagrams
-
+```
 ---
 
 ## ⚙️ Prerequisites
